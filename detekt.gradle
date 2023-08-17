@@ -1,0 +1,11 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+detekt {
+    toolVersion = "1.22.0"
+    buildUponDefaultConfig = true // preconfigure defaults
+    allRules = false // activate all available (even unstable) rules.
+    config = files("$projectDir/../config/detekt.yml")
+    reports {
+        html.required.set(true) // observe findings in your browser with structure and code snippets
+    }
+}

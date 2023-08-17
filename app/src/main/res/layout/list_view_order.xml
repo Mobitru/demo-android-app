@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:showIn="@layout/fragment_orders">
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:background="@drawable/bg_status_in_progress"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:padding="4dp"
+        android:text="@string/order_status_in_progress"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_default"
+        app:layout_goneMarginTop="@dimen/margin_default"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@color/shark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        app:layout_constraintEnd_toStartOf="@id/price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@color/shark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"
+        tools:text="$1,720" />
+
+    <TextView
+        android:id="@+id/line1"
+        style="@style/order_list_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@id/line1count"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/line1count"
+        style="@style/order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        app:layout_constraintBaseline_toBaselineOf="@id/line1"
+        app:layout_constraintEnd_toEndOf="@id/price"
+        tools:text="x2" />
+
+    <TextView
+        android:id="@+id/line2"
+        style="@style/order_list_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@id/line1count"
+        app:layout_constraintStart_toStartOf="@id/line1"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/line2count"
+        style="@style/order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        app:layout_constraintBaseline_toBaselineOf="@id/line2"
+        app:layout_constraintEnd_toEndOf="@id/line1count"
+        tools:text="x3" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/bottomLines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="line1, line1count, line2, line2count" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_default"
+        android:background="@color/iron"
+        app:layout_constraintTop_toBottomOf="@id/bottomLines" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

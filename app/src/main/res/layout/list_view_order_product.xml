@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:showIn="@layout/fragment_review_order">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/margin_default"
+        android:contentDescription="@string/item_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lineSpacingMultiplier="1.5"
+        android:maxLines="2"
+        android:textColor="@color/shark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/topOfPrices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/topOfPrices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="price, priceDiscount" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/topOfPrices"
+        tools:text="$ 620" />
+
+    <TextView
+        android:id="@+id/priceDiscount"
+        style="@style/PriceDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="@dimen/margin_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/topOfPrices"
+        tools:text="$ 600" />
+
+    <TextView
+        android:id="@+id/priceOriginal"
+        style="@style/PriceOriginal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/margin_quart"
+        app:layout_constraintBaseline_toBaselineOf="@id/priceDiscount"
+        app:layout_constraintStart_toEndOf="@id/priceDiscount"
+        tools:text="$ 620" />
+
+    <TextView
+        android:id="@+id/discountValue"
+        style="@style/DiscountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/margin_default"
+        app:layout_constraintBaseline_toBaselineOf="@id/priceOriginal"
+        app:layout_constraintStart_toEndOf="@id/priceOriginal"
+        tools:text="-15%" />
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/edward"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/price"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Qty: 2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        android:background="@color/iron"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/regularItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="price"
+        tools:visibility="gone" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/discountItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="priceDiscount, priceOriginal, discountValue"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

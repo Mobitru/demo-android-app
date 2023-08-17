@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingBottom="@dimen/margin_default"
+    tools:showIn="@layout/fragment_cart">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/item_image"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lineSpacingMultiplier="1.5"
+        android:maxLines="3"
+        android:textColor="@color/shark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/image"
+        tools:text="@tools:sample/full_names" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/title_image_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="title, image" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/minus"
+        style="@style/CircleButton"
+        android:contentDescription="@string/cart_minus"
+        app:icon="@drawable/ic_subtract"
+        app:iconTint="@color/shark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_image_line" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/remove"
+        style="@style/CircleButton"
+        android:contentDescription="@string/cart_remove"
+        android:visibility="gone"
+        app:icon="@drawable/ic_remove"
+        app:iconTint="@color/shark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_image_line" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/leftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="minus, remove" />
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_default"
+        android:background="@drawable/bg_text_border"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/leftButton"
+        app:layout_constraintTop_toBottomOf="@id/title_image_line" />
+
+    <Button
+        android:id="@+id/plus"
+        style="@style/CircleButton"
+        android:layout_marginStart="@dimen/margin_default"
+        android:backgroundTint="@color/bg_button_tint"
+        android:contentDescription="@string/cart_plus"
+        app:icon="@drawable/ic_add"
+        app:iconTint="@color/shark"
+        app:layout_constraintStart_toEndOf="@id/counter"
+        app:layout_constraintTop_toBottomOf="@id/title_image_line" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/Price"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_half"
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@id/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/plus"
+        app:layout_constraintTop_toTopOf="@id/plus"
+        tools:text="$ 620" />
+
+    <TextView
+        android:id="@+id/discountValue"
+        style="@style/DiscountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/plus"
+        tools:text="-15%" />
+
+    <TextView
+        android:id="@+id/priceOriginal"
+        style="@style/PriceOriginal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        tools:text="$ 620" />
+
+    <TextView
+        android:id="@+id/priceDiscount"
+        style="@style/PriceDiscount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_half"
+        android:layout_marginEnd="@dimen/margin_quart"
+        android:autoSizeMinTextSize="8sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_vertical|end"
+        app:layout_constraintBaseline_toBaselineOf="@id/priceOriginal"
+        app:layout_constraintEnd_toStartOf="@id/priceOriginal"
+        app:layout_constraintStart_toEndOf="@id/plus"
+        tools:text="$ 600" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_default"
+        android:background="@color/iron"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/counter" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/regularItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="price" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/discountItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="priceDiscount, priceOriginal, discountValue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.epam.mobitru.screens.account.AccountFragment"
+        android:label="@string/account_title"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.epam.mobitru.screens.home.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.epam.mobitru.screens.orders.OrdersFragment"
+        android:label=""
+        tools:layout="@layout/fragment_orders" />
+</navigation>

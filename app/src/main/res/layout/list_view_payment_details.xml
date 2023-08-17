@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_default">
+
+    <TextView
+        android:id="@+id/packaging_fee_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:maxLines="1"
+        android:text="@string/order_packaging_fee"
+        app:layout_constraintEnd_toStartOf="@id/packaging_fee_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/packaging_fee_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintBaseline_toBaselineOf="@id/packaging_fee_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$0.29" />
+
+    <TextView
+        android:id="@+id/subtotal_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:maxLines="1"
+        android:text="@string/order_subtotal"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/subtotal_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/packaging_fee_title" />
+
+    <TextView
+        android:id="@+id/subtotal_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/subtotal_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$1,620" />
+
+    <TextView
+        android:id="@+id/delivery_fee_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:maxLines="1"
+        android:text="@string/order_delivery_fee"
+        app:layout_constraintEnd_toStartOf="@id/delivery_fee_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtotal_title" />
+
+    <TextView
+        android:id="@+id/delivery_fee_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintBaseline_toBaselineOf="@id/delivery_fee_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$11.50" />
+
+    <TextView
+        android:id="@+id/discount_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:maxLines="1"
+        android:text="@string/order_discount"
+        app:layout_constraintEnd_toStartOf="@id/discount_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delivery_fee_title" />
+
+    <TextView
+        android:id="@+id/discount_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintBaseline_toBaselineOf="@id/discount_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$180.56" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_half"
+        android:background="@color/iron"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/discount_title" />
+
+    <TextView
+        android:id="@+id/total_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:maxLines="1"
+        android:text="@string/order_total"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/total_value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/discount_title" />
+
+    <TextView
+        android:id="@+id/total_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/total_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$1,440" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

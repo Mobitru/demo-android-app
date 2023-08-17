@@ -1,0 +1,132 @@
+def group(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext.app = [
+        compileSdkVersion: 33,
+        targetSdkVersion : 33,
+        minSdkVersion    : 28,
+]
+
+
+def androidXCoreVersion = '1.9.0'
+def androidXAppCompatVersion = '1.6.0'
+def androidXConstraintLayoutVersion = '2.1.4'
+def androidXNavigationVersion = '2.5.3'
+def androidXBiometricVersion = '1.2.0-alpha05'
+def androidXWebkitVersion = '1.5.0'
+def androidXCameraxVersion = "1.2.0"
+
+ext.androidX = [
+        androidXCore      : "androidx.core:core-ktx:$androidXCoreVersion",
+        appCompat         : "androidx.appcompat:appcompat:$androidXAppCompatVersion",
+        constraintLayout  : "androidx.constraintlayout:constraintlayout:$androidXConstraintLayoutVersion",
+        navigationFragment: "androidx.navigation:navigation-fragment-ktx:$androidXNavigationVersion",
+        navigationUi      : "androidx.navigation:navigation-ui-ktx:$androidXNavigationVersion",
+        biometric         : "androidx.biometric:biometric-ktx:$androidXBiometricVersion",
+        webkit            : "androidx.webkit:webkit:$androidXWebkitVersion",
+        camera2           : "androidx.camera:camera-camera2:$androidXCameraxVersion",
+        cameraLifeCycle   : "androidx.camera:camera-lifecycle:$androidXCameraxVersion",
+        cameraView        : "androidx.camera:camera-view:$androidXCameraxVersion",
+]
+
+ext.cameraX = group {
+    implementation androidX.camera2
+    implementation androidX.cameraLifeCycle
+    implementation androidX.cameraView
+}
+
+def materialVersion = '1.8.0-rc01'
+def groupieVersion = '2.10.1'
+def picassoVersion = '2.8'
+
+ext.ui = [
+        material          : "com.google.android.material:material:$materialVersion",
+        groupie           : "com.github.lisawray.groupie:groupie:$groupieVersion",
+        groupieViewBinding: "com.github.lisawray.groupie:groupie-viewbinding:$groupieVersion",
+        picasso           : "com.squareup.picasso:picasso:$picassoVersion",
+]
+
+ext.groupie = group {
+    implementation ui.groupie
+    implementation ui.groupieViewBinding
+}
+
+def koinVersion = "3.3.2"
+def koinAndroidVersion = "3.3.2"
+
+ext.koin = [
+        core               : "io.insert-koin:koin-core:$koinVersion",
+        android            : "io.insert-koin:koin-android:$koinAndroidVersion",
+        androidCompat      : "io.insert-koin:koin-android-compat:$koinAndroidVersion",
+        androidXWorkManager: "io.insert-koin:koin-androidx-workmanager:$koinAndroidVersion",
+        androidXNavigation : "io.insert-koin:koin-androidx-navigation:$koinAndroidVersion",
+]
+
+ext.koinAndroid = group {
+    implementation koin.core
+    implementation koin.android
+    implementation koin.androidCompat
+    implementation koin.androidXWorkManager
+    implementation koin.androidXNavigation
+}
+
+
+def timberVersion = '5.0.1'
+def mlBarcodeVersion = '17.0.3'
+
+ext.tools = [
+        timber: "com.jakewharton.timber:timber:$timberVersion",
+        mlBarcode: "com.google.mlkit:barcode-scanning:$mlBarcodeVersion"
+]
+
+
+def jUnitVersion = '4.13.2'
+ext.unitTesting = [
+        jUnit        : "junit:junit:$jUnitVersion",
+        koinTest     : "io.insert-koin:koin-test:$koinVersion",
+        koinTestJunit: "io.insert-koin:koin-test-junit4:$koinVersion",
+]
+
+ext.unitTestingGroup = group {
+    testImplementation unitTesting.jUnit
+    testImplementation unitTesting.koinTest
+    testImplementation unitTesting.koinTestJunit
+}
+
+def jUnitExt = '1.1.5'
+def espressoCore = '3.4.0'
+ext.instrumentationTesting = [
+        jUnitExt    : "androidx.test.ext:junit:$jUnitExt",
+        espressoCore: "androidx.test.espresso:espresso-core:$espressoCore",
+]
+
+ext.instrumentationTestingGroup = group {
+    androidTestImplementation instrumentationTesting.jUnitExt
+    androidTestImplementation instrumentationTesting.espressoCore
+}
+
+def moshiVersion = '1.14.0'
+def retrofitVersion = '2.9.0'
+def loggingInterceptorVersion = '4.10.0'
+def mockWebServerVersion = '4.10.0'
+def jsonAssertVersion = '1.5.1'
+
+ext.networking = [
+        moshi        : "com.squareup.moshi:moshi:$moshiVersion",
+        moshiCodegen : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+        retrofit     : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+        retrofitMoshi: "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+        okHttpLogging: "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion",
+        mockWebServer: "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion",
+        jsonAssert   : "org.skyscreamer:jsonassert:$jsonAssertVersion",
+]
+
+ext.networkingImpl = group {
+    implementation networking.retrofit
+    implementation networking.retrofitMoshi
+    ksp networking.moshiCodegen
+    implementation networking.moshi
+    implementation networking.okHttpLogging
+}

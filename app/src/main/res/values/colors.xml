@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="black_haze">#F2F4F5</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="error_bg">#FAEFEB</color>
+    <color name="mustard">#FFF64A</color>
+    <color name="rust">#D64F24</color>
+    <color name="sienna">#EA673E</color>
+    <color name="gigas">#392CAE</color>
+    <color name="primary_light">@color/gigas</color>
+    <color name="shark">#1F2324</color>
+    <color name="iron">#EBEDED</color>
+    <color name="java">#29ADC2</color>
+    <color name="iceberg">#DFF4F7</color>
+    <color name="edward">#94A3A6</color>
+    <color name="jungle_green">#22A475</color>
+    <color name="silver_sand">#CED5D6</color>
+</resources>

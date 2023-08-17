@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".screens.completedOrder.CompletedOrderFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ic_done"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:contentDescription="@string/order_done_mark"
+                android:src="@drawable/ic_done_round"
+                app:layout_constraintBottom_toTopOf="@id/completed_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:tint="@color/jungle_green" />
+
+            <TextView
+                android:id="@+id/completed_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_default"
+                android:layout_marginTop="36dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.5"
+                android:text="@string/order_completed_text"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ic_done" />
+
+            <Button
+                android:id="@+id/go_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/order_go_back_to_products"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/progressContainer"
+            layout="@layout/include_progress" />
+    </FrameLayout>
+</androidx.core.widget.NestedScrollView>

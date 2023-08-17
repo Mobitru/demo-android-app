@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "com.google.devtools.ksp"
+}
+apply from: rootProject.file('dependencies.gradle')
+apply from: rootProject.file('detekt.gradle')
+
+android {
+    namespace 'com.epam.mobitru.network'
+    compileSdk app.compileSdkVersion
+
+    defaultConfig {
+        minSdk app.minSdkVersion
+        targetSdk app.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    networkingImpl()
+    implementation tools.timber
+    implementation koin.core
+
+    implementation networking.mockWebServer
+    implementation networking.jsonAssert
+
+    unitTestingGroup()
+}
