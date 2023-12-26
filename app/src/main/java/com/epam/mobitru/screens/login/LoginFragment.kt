@@ -145,9 +145,20 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
     }
 
+    private fun typeDefaultLogin() {
+        binding?.apply {
+            loginEmail.editText?.setText(getString(R.string.testuser_mobitru))
+            loginPassword.editText?.setText(getString(R.string.testpassword_mobitru))
+        }
+    }
+
     private fun subscribeViews() {
         binding?.apply {
             loginSignin.setOnClickListener {
+                viewModel.login()
+            }
+            typeAndLogin.setOnClickListener {
+                typeDefaultLogin()
                 viewModel.login()
             }
             loginError.setCloseClickListener {
