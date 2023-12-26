@@ -5,6 +5,7 @@
     <string name="form_login">Login</string>
     <string name="form_password">Password</string>
     <string name="form_sign_in">Sign in</string>
+    <string name="form_type_and_sign_in">Sign in with correct user</string>
     <string name="login_bio">Biometric authentication</string>
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
@@ -72,4 +73,6 @@
     <string name="cart_toolbar_title">Cart (%1$d)</string>
     <string name="product_description_no_discount">Phone image. %1$s. Price: %2$s</string>
     <string name="product_description_discount">Phone image. %1$s. Discount: %2$s. Price: %3$s. Price before: %4$s</string>
+    <string name="testuser_mobitru">testuser@mobitru.com</string>
+    <string name="testpassword_mobitru">password1</string>
 </resources>

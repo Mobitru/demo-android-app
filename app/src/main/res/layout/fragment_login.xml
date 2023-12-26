@@ -107,17 +107,29 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/login_password" />
 
+            <Button
+                android:id="@+id/type_and_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="@string/form_type_and_sign_in"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_password" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/login_bio"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="100dp"
                 android:text="@string/login_bio"
                 android:textColor="@color/shark"
                 app:icon="@drawable/scan_finger"
                 app:iconGravity="textStart"
                 app:iconTint="@color/black"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/login_signin" />
