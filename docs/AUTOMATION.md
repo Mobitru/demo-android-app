@@ -40,10 +40,11 @@ For finding an Element inside a ListView you need to use specific [ViewMatcher](
 where it's possible to specify the ListView Resource ID and index of necessary Element. As result, you will receive ```Matcher<View>```, which can be used for performing actions and making assertions
 
 ### Accessibility testing
-The Accessibility Checks were configured in [AppBaseTest](../app/src/androidTest/java/com/epam/mobitru/AppBaseTest.java) for verifying the app versatility
+The Accessibility Checks were configured in [AppBaseTest](../app/src/androidTest/java/com/epam/mobitru/AppBaseTest.java) for verifying the app versatility 
 There are 2 configurations in code, which can be used for accessibility test automation:
 - pre-release set of checks for whole root view, but excluding several verifications for specific elements (**default**)
 - base set of checks for view action only, which will be performed for any element
+
 **!!** for this configuration you will see accessible verification fails, which will demonstrate how it looks in a tests result Report and an execution log  
 
 ## Running tests on a local machine with an emulator
