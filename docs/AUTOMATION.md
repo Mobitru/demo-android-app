@@ -45,7 +45,7 @@ There are 2 configurations in code, which can be used for accessibility test aut
 - pre-release set of checks for whole root view, but excluding several verifications for specific elements (**default**)
 - base set of checks for view action only, which will be performed for any element
 
-**!!** for this configuration you will see accessible verification fails, which will demonstrate how it looks in a tests result Report and an execution log  
+**!!** for second configuration you will see accessible verification fails, which will demonstrate how it looks in a tests result Report and an execution log  
 
 ## Running tests on a local machine with an emulator
 > Make sure you've added a virtual device
