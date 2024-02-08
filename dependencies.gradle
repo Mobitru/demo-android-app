@@ -96,15 +96,20 @@ ext.unitTestingGroup = group {
 }
 
 def jUnitExt = '1.1.5'
-def espressoCore = '3.4.0'
+def espressoCore = '3.5.1'
+def harmcrest = '2.2'
 ext.instrumentationTesting = [
         jUnitExt    : "androidx.test.ext:junit:$jUnitExt",
         espressoCore: "androidx.test.espresso:espresso-core:$espressoCore",
+        espressoAccessibility: "androidx.test.espresso:espresso-accessibility:$espressoCore",
+        harmcrest: "org.hamcrest:hamcrest:$harmcrest",
 ]
 
 ext.instrumentationTestingGroup = group {
     androidTestImplementation instrumentationTesting.jUnitExt
     androidTestImplementation instrumentationTesting.espressoCore
+    androidTestImplementation instrumentationTesting.espressoAccessibility
+    androidTestImplementation instrumentationTesting.harmcrest
 }
 
 def moshiVersion = '1.14.0'

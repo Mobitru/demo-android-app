@@ -104,6 +104,7 @@ You only need to enable the Screen reader on the Device:
 After enabling it, you can go to the Products List screen and focus on some elements like Product Title or Image.
 Then, you should hear what the Screen reader pronounces for focused elements.
 
+[Here](docs/AUTOMATION.md#accessibility-testing) you can find more information about added Accessibility Test Automation
 
 ## Contributing to the App
 
