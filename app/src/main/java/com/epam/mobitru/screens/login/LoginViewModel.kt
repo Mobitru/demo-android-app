@@ -55,6 +55,10 @@ class LoginViewModel(private val userRepository: UserRepository) : BaseViewModel
         }
     }
 
+    fun crashApp() {
+        throw RuntimeException("the app test crash")
+    }
+
     fun onCloseError() {
         viewModelScope.launch {
             _state.emit(State.Default)

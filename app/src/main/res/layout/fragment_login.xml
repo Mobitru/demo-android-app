@@ -134,6 +134,18 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/login_signin" />
 
+            <Button
+                android:id="@+id/crash_app"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:text="@string/form_crash_app"
+                android:backgroundTint="@color/sienna"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_bio" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include

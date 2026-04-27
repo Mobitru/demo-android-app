@@ -14,7 +14,9 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.epam.mobitru.R
 import com.epam.mobitru.base.BaseFragment
 import com.epam.mobitru.base.BaseNavigationHandler
@@ -24,6 +26,7 @@ import com.epam.mobitru.databinding.FragmentLoginBinding
 import com.epam.mobitru.extentions.requireEditText
 import com.epam.mobitru.util.viewBinding
 import com.epam.mobitru.views.TextWatcherAfterChanged
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.concurrent.Executor
@@ -49,9 +52,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenResumed {
-            viewModel.state.collect {
-                handleState(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.state.collect {
+                    handleState(it)
+                }
             }
         }
         createBiometricPrompt()
@@ -104,17 +109,20 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     progressContainer.progressRoot.isVisible = false
                 }
             }
+
             LoginViewModel.State.Error -> {
                 binding?.apply {
                     progressContainer.progressRoot.isVisible = false
                     loginError.isVisible = true
                 }
             }
+
             LoginViewModel.State.Progress -> {
                 binding?.apply {
                     progressContainer.progressRoot.isVisible = true
                 }
             }
+
             LoginViewModel.State.Success -> {
                 binding?.apply {
                     progressContainer.progressRoot.isVisible = false
@@ -161,6 +169,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 typeDefaultLogin()
                 viewModel.login()
             }
+            crashApp.setOnClickListener {
+                viewModel.crashApp()
+            }
             loginError.setCloseClickListener {
                 viewModel.onCloseError()
             }
@@ -181,26 +192,32 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     Timber.d("App can authenticate using biometrics.")
                     loginBio.isVisible = true
                 }
+
                 BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
                     Timber.e("No biometric features available on this device.")
                     loginBio.isVisible = false
                 }
+
                 BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
                     Timber.e("Biometric features are currently unavailable.")
                     loginBio.isVisible = false
                 }
+
                 BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
                     // We will prompt user to set bio on button click
                     loginBio.isVisible = true
                 }
+
                 BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {
                     Timber.e("Biometric security update required.")
                     loginBio.isVisible = false
                 }
+
                 BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> {
                     Timber.e("Biometric error unsupported.")
                     loginBio.isVisible = false
                 }
+
                 BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> {
                     Timber.e("Biometric unknown state.")
                     loginBio.isVisible = false
@@ -212,9 +229,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                         Timber.d("App requesting authenticate using biometrics.")
                         biometricPrompt.authenticate(promptInfo)
                     }
+
                     BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
                         enrollBio()
                     }
+
                     else -> {
                         Timber.d("Unexpected biometric state.")
                     }
@@ -231,6 +250,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED, SUPPORTED_BIO
                 )
             }
+
             else -> {
                 @Suppress("DEPRECATION") Intent(Settings.ACTION_FINGERPRINT_ENROLL)
             }

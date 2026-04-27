@@ -44,7 +44,7 @@ class HomeViewModel(
             } ?: emptyList()
         }
 
-    val title: Flow<String> = list.map { "Mobile phones (${it.size})" }
+    val titleProductsNumber: Flow<String> = list.map { "(${it.size})" }
     val selectedOrder: StateFlow<Pair<ProductSortKind, Direction>> =
         productsRepository.selectedOrder
 

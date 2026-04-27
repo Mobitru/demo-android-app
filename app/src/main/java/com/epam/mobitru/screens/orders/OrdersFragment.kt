@@ -2,7 +2,9 @@ package com.epam.mobitru.screens.orders
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.epam.mobitru.R
 import com.epam.mobitru.base.BaseFragment
@@ -11,6 +13,7 @@ import com.epam.mobitru.base.TopFragmentNavigator
 import com.epam.mobitru.databinding.FragmentOrdersBinding
 import com.epam.mobitru.util.viewBinding
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -28,9 +31,11 @@ class OrdersFragment : BaseFragment(R.layout.fragment_orders) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenResumed {
-            viewModel.list.collect {
-                adapter.updateAsync(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.list.collect {
+                    adapter.updateAsync(it)
+                }
             }
         }
     }

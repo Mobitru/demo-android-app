@@ -9,7 +9,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.viewbinding.BindableItem
 
 class SortViewItem(
-    @StringRes private val titleRes: Int = 0,
+    @param:StringRes private val titleRes: Int = 0,
     private val title: String? = "",
     private val isActive: Boolean,
     private val onClick: () -> Unit,

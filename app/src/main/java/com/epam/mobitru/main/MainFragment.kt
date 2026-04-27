@@ -9,6 +9,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -22,6 +23,7 @@ import com.epam.mobitru.base.TopFragmentNavigator
 import com.epam.mobitru.databinding.FragmentMainBinding
 import com.epam.mobitru.util.viewBinding
 import com.epam.mobitru.views.CartView
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -60,9 +62,11 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenResumed {
-            viewModel.cartCounter.collect {
-                cartView?.setCounter(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.cartCounter.collect {
+                    cartView?.setCounter(it)
+                }
             }
         }
     }

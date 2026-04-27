@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'io.gitlab.arturbosch.detekt'
 }
@@ -8,8 +10,8 @@ apply from: rootProject.file('dependencies.gradle')
 apply from: rootProject.file('detekt.gradle')
 
 android {
-    namespace 'com.epam.mobitru'
-    compileSdk app.compileSdkVersion
+    namespace='com.epam.mobitru'
+    compileSdk=app.compileSdkVersion
 
     defaultConfig {
         applicationId "com.epam.mobitru"
@@ -23,19 +25,23 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled=false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_22
+        targetCompatibility JavaVersion.VERSION_22
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
+        buildConfig = true
+    }
+}
+kotlin {
+    compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_3
+        jvmTarget = JvmTarget.JVM_22
     }
 }
 

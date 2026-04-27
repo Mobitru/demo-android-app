@@ -101,7 +101,7 @@ public class AppBaseTest {
 
     protected void enterUserInfoAndSave(String fn, String ln, String address) throws InterruptedException {
         onView(allOf(supportsInputMethods(), isDescendantOfA(withId(R.id.first_name))))
-                .perform(typeText(fn), closeSoftKeyboard());
+                .perform(click(), typeText(fn), closeSoftKeyboard());
         onView(allOf(supportsInputMethods(), isDescendantOfA(withId(R.id.last_name))))
                 .perform(typeText(ln), closeSoftKeyboard());
         onView(allOf(supportsInputMethods(), isDescendantOfA(withId(R.id.address))))

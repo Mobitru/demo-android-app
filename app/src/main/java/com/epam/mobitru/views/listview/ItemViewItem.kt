@@ -8,7 +8,7 @@ import com.epam.mobitru.extentions.applyString
 import com.xwray.groupie.viewbinding.BindableItem
 
 class ItemViewItem(
-    @StringRes private val titleRes: Int = 0,
+    @param:StringRes private val titleRes: Int = 0,
     private val title: String? = "",
     private val onClick: () -> Unit,
 ) : BindableItem<ListViewItemBinding>() {

@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.epam.mobitru.R
 import com.epam.mobitru.base.BaseFragment
@@ -16,6 +18,7 @@ import com.epam.mobitru.databinding.FragmentCartBinding
 import com.epam.mobitru.util.viewBinding
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -38,14 +41,18 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenResumed {
-            viewModel.list.collect {
-                handleList(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.list.collect {
+                    handleList(it)
+                }
             }
         }
-        lifecycleScope.launchWhenResumed {
-            viewModel.cartPromo.collect {
-                handlePromo(it, viewModel.list.value.isEmpty())
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.cartPromo.collect {
+                    handlePromo(it, viewModel.list.value.isEmpty())
+                }
             }
         }
     }

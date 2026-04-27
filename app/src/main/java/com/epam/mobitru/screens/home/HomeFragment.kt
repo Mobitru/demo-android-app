@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.epam.mobitru.R
 import com.epam.mobitru.base.BaseFragment
@@ -17,6 +19,7 @@ import com.epam.mobitru.main.MainFragmentDirections
 import com.epam.mobitru.screens.home.sort.SortViewModel
 import com.epam.mobitru.util.viewBinding
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -46,43 +49,49 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun subscribeSort() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.selectedOrder.collect {
-                binding?.apply {
-                    sortBy.setText(it.first.label)
-                    scrollToStart = true
-                    sortBy.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        it.second.image, 0, 0, 0
-                    )
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.selectedOrder.collect {
+                    binding?.apply {
+                        sortBy.setText(it.first.label)
+                        scrollToStart = true
+                        sortBy.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                            it.second.image, 0, 0, 0
+                        )
 
-                    val descriptionResId = SortViewModel.SORT_OPTIONS.getKey(it)
-                    sortBy.contentDescription = getString(descriptionResId)
-                    ViewCompat.replaceAccessibilityAction(
-                        sortBy,
-                        AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK,
-                        getString(R.string.sort_change),
-                        null
-                    )
+                        val descriptionResId = SortViewModel.SORT_OPTIONS.getKey(it)
+                        sortBy.contentDescription = getString(descriptionResId)
+                        ViewCompat.replaceAccessibilityAction(
+                            sortBy,
+                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK,
+                            getString(R.string.sort_change),
+                            null
+                        )
+                    }
                 }
             }
         }
     }
 
     private fun subscribeTitle() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.title.collect {
-                binding?.category?.text = it
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.titleProductsNumber.collect {
+                    binding?.category?.text = resources.getString(R.string.home_screen_category, it)
+                }
             }
         }
     }
 
     private fun subscribeList() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.list.collect {
-                adapter.updateAsync(it) {
-                    if (scrollToStart) {
-                        binding?.productList?.scrollToPosition(0)
-                        scrollToStart = false
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.list.collect {
+                    adapter.updateAsync(it) {
+                        if (scrollToStart) {
+                            binding?.productList?.scrollToPosition(0)
+                            scrollToStart = false
+                        }
                     }
                 }
             }

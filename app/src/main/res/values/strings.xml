@@ -6,6 +6,7 @@
     <string name="form_password">Password</string>
     <string name="form_sign_in">Sign in</string>
     <string name="form_type_and_sign_in">Sign in with correct user</string>
+    <string name="form_crash_app" translatable="false">Crash app</string>
     <string name="login_bio">Biometric authentication</string>
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
@@ -65,6 +66,7 @@
     <string name="biometric_login_subtitle">Log in using your biometric credential</string>
     <string name="biometric_login_cancel">Use account password</string>
     <string name="add_item_to_cart_description">Add to cart %1$s</string>
+    <string name="home_screen_category">Mobile phones %1$s</string>
     <string name="remove_item_from_cart_description">Added to cart. Activate to remove %1$s from cart</string>
     <string name="profile_address">Address</string>
     <string name="cart_minus">Minus</string>

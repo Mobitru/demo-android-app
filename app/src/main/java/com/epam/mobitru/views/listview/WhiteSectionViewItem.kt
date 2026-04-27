@@ -8,7 +8,7 @@ import com.epam.mobitru.extentions.applyString
 import com.xwray.groupie.viewbinding.BindableItem
 
 class WhiteSectionViewItem(
-    @StringRes private val titleRes: Int = 0,
+    @param:StringRes private val titleRes: Int = 0,
     private val title: String? = "",
 ) : BindableItem<ListViewWhiteSectionBinding>() {
     constructor(@StringRes titleRes: Int) : this(titleRes, "")

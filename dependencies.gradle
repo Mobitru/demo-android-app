@@ -4,19 +4,19 @@ def group(Closure closure) {
 }
 
 ext.app = [
-        compileSdkVersion: 33,
-        targetSdkVersion : 33,
+        compileSdkVersion: 36,
+        targetSdkVersion : 36,
         minSdkVersion    : 28,
 ]
 
 
-def androidXCoreVersion = '1.9.0'
-def androidXAppCompatVersion = '1.6.0'
-def androidXConstraintLayoutVersion = '2.1.4'
-def androidXNavigationVersion = '2.5.3'
-def androidXBiometricVersion = '1.2.0-alpha05'
-def androidXWebkitVersion = '1.5.0'
-def androidXCameraxVersion = "1.2.0"
+def androidXCoreVersion = '1.18.0'
+def androidXAppCompatVersion = '1.7.1'
+def androidXConstraintLayoutVersion = '2.2.1'
+def androidXNavigationVersion = '2.9.7'
+def androidXBiometricVersion = '1.4.0-alpha02'
+def androidXWebkitVersion = '1.15.0'
+def androidXCameraxVersion = "1.6.0"
 
 ext.androidX = [
         androidXCore      : "androidx.core:core-ktx:$androidXCoreVersion",
@@ -37,7 +37,7 @@ ext.cameraX = group {
     implementation androidX.cameraView
 }
 
-def materialVersion = '1.8.0-rc01'
+def materialVersion = '1.13.0'
 def groupieVersion = '2.10.1'
 def picassoVersion = '2.8'
 
@@ -53,8 +53,8 @@ ext.groupie = group {
     implementation ui.groupieViewBinding
 }
 
-def koinVersion = "3.3.2"
-def koinAndroidVersion = "3.3.2"
+def koinVersion = "4.2.1"
+def koinAndroidVersion = "4.2.1"
 
 ext.koin = [
         core               : "io.insert-koin:koin-core:$koinVersion",
@@ -74,7 +74,7 @@ ext.koinAndroid = group {
 
 
 def timberVersion = '5.0.1'
-def mlBarcodeVersion = '17.0.3'
+def mlBarcodeVersion = '17.3.0'
 
 ext.tools = [
         timber: "com.jakewharton.timber:timber:$timberVersion",
@@ -96,7 +96,7 @@ ext.unitTestingGroup = group {
 }
 
 def jUnitExt = '1.1.5'
-def espressoCore = '3.5.1'
+def espressoCore = '3.7.0'
 def harmcrest = '2.2'
 ext.instrumentationTesting = [
         jUnitExt    : "androidx.test.ext:junit:$jUnitExt",
@@ -112,11 +112,11 @@ ext.instrumentationTestingGroup = group {
     androidTestImplementation instrumentationTesting.harmcrest
 }
 
-def moshiVersion = '1.14.0'
-def retrofitVersion = '2.9.0'
-def loggingInterceptorVersion = '4.10.0'
-def mockWebServerVersion = '4.10.0'
-def jsonAssertVersion = '1.5.1'
+def moshiVersion = '1.15.2'
+def retrofitVersion = '2.12.0'
+def loggingInterceptorVersion = '5.3.2'
+def mockWebServerVersion = '5.3.2'
+def jsonAssertVersion = '1.5.3'
 
 ext.networking = [
         moshi        : "com.squareup.moshi:moshi:$moshiVersion",

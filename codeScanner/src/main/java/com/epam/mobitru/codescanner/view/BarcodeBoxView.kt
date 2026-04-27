@@ -15,7 +15,7 @@ class BarcodeBoxView(
 
     private var mRect = RectF()
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         val cornerRadius = 10f
@@ -24,7 +24,7 @@ class BarcodeBoxView(
         paint.color = Color.RED
         paint.strokeWidth = 5f
 
-        canvas?.drawRoundRect(mRect, cornerRadius, cornerRadius, paint)
+        canvas.drawRoundRect(mRect, cornerRadius, cornerRadius, paint)
     }
 
     fun setRect(rect: RectF) {

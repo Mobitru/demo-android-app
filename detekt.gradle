@@ -1,7 +1,7 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 detekt {
-    toolVersion = "1.22.0"
+    toolVersion = "1.23.8"
     buildUponDefaultConfig = true // preconfigure defaults
     allRules = false // activate all available (even unstable) rules.
     config = files("$projectDir/../config/detekt.yml")

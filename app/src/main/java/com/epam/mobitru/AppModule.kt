@@ -29,9 +29,9 @@ import com.epam.mobitru.screens.reviewOrder.ReviewOrderViewModel
 import com.epam.mobitru.screens.showOrder.ShowOrderFragment
 import com.epam.mobitru.screens.showOrder.ShowOrderViewModel
 import org.koin.androidx.fragment.dsl.fragmentOf
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
+import org.koin.core.module.dsl.*
 
 val appModule = module {
     singleOf(::UserRepository)

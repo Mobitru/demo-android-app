@@ -10,6 +10,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.epam.mobitru.R
 import com.epam.mobitru.base.BaseFragment
 import com.epam.mobitru.base.BaseNavigationHandler
@@ -19,6 +20,7 @@ import com.epam.mobitru.databinding.FragmentEditProfileBinding
 import com.epam.mobitru.extentions.requireEditText
 import com.epam.mobitru.util.viewBinding
 import com.epam.mobitru.views.TextWatcherAfterChanged
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -39,24 +41,32 @@ class EditProfileFragment : BaseFragment(R.layout.fragment_edit_profile) {
     }
 
     private fun subscribeToVm() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.firstNameError.collect {
-                binding?.firstName?.error = it
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.firstNameError.collect {
+                    binding?.firstName?.error = it
+                }
             }
         }
-        lifecycleScope.launchWhenResumed {
-            viewModel.lastNameError.collect {
-                binding?.lastName?.error = it
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.lastNameError.collect {
+                    binding?.lastName?.error = it
+                }
             }
         }
-        lifecycleScope.launchWhenResumed {
-            viewModel.addressError.collect {
-                binding?.address?.error = it
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.addressError.collect {
+                    binding?.address?.error = it
+                }
             }
         }
-        lifecycleScope.launchWhenResumed {
-            viewModel.email.collect {
-                binding?.email?.editText?.setText(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.email.collect {
+                    binding?.email?.editText?.setText(it)
+                }
             }
         }
     }

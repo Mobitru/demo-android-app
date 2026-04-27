@@ -1,13 +1,15 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
     id "com.google.devtools.ksp"
 }
 apply from: rootProject.file('dependencies.gradle')
 apply from: rootProject.file('detekt.gradle')
 
 android {
-    namespace 'com.epam.mobitru.network'
+    namespace = 'com.epam.mobitru.network'
     compileSdk app.compileSdkVersion
 
     defaultConfig {
@@ -25,11 +27,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_22
+        targetCompatibility JavaVersion.VERSION_22
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+}
+kotlin {
+    compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_3
+        jvmTarget = JvmTarget.JVM_22
     }
 }
 
